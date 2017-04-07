@@ -22,6 +22,16 @@ namespace ORM
                 Console.WriteLine("Cliente: " + item.nome);
             }
         }
+        public static void exe105(ISession session)
+        {
+            //105-Para as aeronaves do tipo jato e que são de companhias de países com mais 
+            //de 1 milhão de habitantes, listar o nome do equipamento e o nome de sua companhia.
+            var cli = session.Query<T_Cliente>().Where(x => x.pais.codigo == "BR");
+            foreach (var item in cli)
+            {
+                Console.WriteLine("Cliente: " + item.nome);
+            }
+        }
 
         //concluido, talvez com sucesso
 
@@ -80,8 +90,22 @@ namespace ORM
             }
         }
 
-        //105-Para as aeronaves do tipo jato e que são de companhias de países com mais de 1 milhão de habitantes, listar o nome do equipamento e o nome de sua companhia.
-        //90-Calcular o valor médio do preço dos bilhetes das rotas que partem do aeroporto JFK em New York.
+
+        public static void exe90(ISession session)
+        {
+            //90-Calcular o valor médio do preço dos bilhetes das rotas que partem do 
+            //aeroporto JFK em New York.
+            var qrota = session.Query<T_Rota>()
+                .Where(x => x.origem.codigo=="JFK")
+                .Select(r => new {r.valorbilhete}).Average(r => r.valorbilhete);
+            Console.WriteLine("Média do preço do bilhete " + qrota.ToString());
+            //var voos =
+            //foreach (var item in voos)
+            //{
+            //    Console.WriteLine("Voo:{0}, Data saida:{1} {2}", item.numero, item.dataSaida.ToShortDateString(), item.hrSaida.ToShortTimeString());
+            //}
+        }
+
         //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde ninguém teve desconto.
         //11-Listar os códigos dos equipamentos com a quantidade de motores desconhecida.
         //26-Listar o valor do bilhete mais barato do vôo que sai do GALEÃO (“GIG”).
