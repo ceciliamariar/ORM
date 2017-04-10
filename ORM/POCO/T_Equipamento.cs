@@ -11,9 +11,9 @@ namespace ORM
         public virtual string codigo { get; set; }
         public virtual string nome { get; set; }
         public virtual string tipo { get; set; }
-        public virtual int qtdmotor { get; set; }
+        public virtual int? qtdmotor { get; set; }
         public virtual string tipoprop { get; set; }
-        public virtual int qtdpassag { get; set; }
+        public virtual int? qtdpassag { get; set; }
          
     }
 }

@@ -32,6 +32,12 @@ namespace ORM
                 Console.WriteLine("Cliente: " + item.nome);
             }
         }
+        public static void exe116(ISession session)
+        {
+            //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde
+            // ninguém teve desconto.
+        }
+
 
         //concluido, talvez com sucesso
 
@@ -89,25 +95,32 @@ namespace ORM
                 Console.WriteLine("Voo:{0}, Data saida:{1} {2}", item.numero, item.dataSaida.ToShortDateString(), item.hrSaida.ToShortTimeString() );
             }
         }
-
-
         public static void exe90(ISession session)
         {
             //90-Calcular o valor médio do preço dos bilhetes das rotas que partem do 
             //aeroporto JFK em New York.
             var qrota = session.Query<T_Rota>()
                 .Where(x => x.origem.codigo=="JFK")
-                .Select(r => new {r.valorbilhete}).Average(r => r.valorbilhete);
-            Console.WriteLine("Média do preço do bilhete " + qrota.ToString());
-            //var voos =
-            //foreach (var item in voos)
-            //{
-            //    Console.WriteLine("Voo:{0}, Data saida:{1} {2}", item.numero, item.dataSaida.ToShortDateString(), item.hrSaida.ToShortTimeString());
-            //}
+                .Select(r => new {r.valorbilhete}).Average(a => a.valorbilhete);
+            Console.WriteLine("Média do preço do bilhete para JFK: R$ " + qrota.ToString());
+            
         }
 
-        //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde ninguém teve desconto.
-        //11-Listar os códigos dos equipamentos com a quantidade de motores desconhecida.
+        public static void exe11(ISession session)
+        {
+            //11-Listar os códigos dos equipamentos com a quantidade de motores desconhecida.
+            var qeqp = session.Query<T_Equipamento>()
+                .Where(x => x.qtdmotor == null);
+            var eqp = qeqp.ToList();
+            foreach (var item in eqp)
+            {
+                Console.WriteLine("Equipamento: " + item.nome);
+
+            }
+        }
+
+
+
         //26-Listar o valor do bilhete mais barato do vôo que sai do GALEÃO (“GIG”).
         //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), japoneses(JA) ou franceses(FR).
         //91-Calcular a data média dos vôos programados para a rota 101.

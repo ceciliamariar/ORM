@@ -1,0 +1,151 @@
+--- Pedro
+
+62-verifique se existe alguma reserva para o código do cliente = 1
+92-Selecionar a quantidade de clientes cadastrados e a quantidade de clientes que são responsáveis por outros clientes.
+42-Liste a média de valor dos bilhetes das rotas que partem do aeroporto de  'BAQ'.
+41-Liste todos os Clientes (nomes
+8-Listar os números, a data/hora de saída dos vôos que atendem as rotas 001, 002, 003.
+65-Selecione o número da rota, o nome do aeroporto de origem, o nome do aeroporto de destino, e o valor do bilhete.
+104-Quais são as cidades de onde saem os vôos cadastrados, e quais são as companhias que os atendem?
+10-Listar sem repetição os números dos vôos em que algum cliente viajou sem desconto.
+31-Quais são as aeronaves das companhias de países que tem população com mais de 150 milhões de habitantes?
+3-Listar sem repetição as quantidades de passageiros que os equipamentos transportam.
+19-Listar os códigos e nomes dos equipamentos que sejam a jato e transportem mais de 100 pessoas, ou tenham propulsão a motor e transportem menos de 20 pessoas.
+100-Listar os números das rotas, os códigos e nomes dos aeroportos de origem destas rotas.
+30-Listar o sexo e o nome dos clientes que reservaram vôos com desconto igual ao desconto maior que 10%.
+36-Qual é o número de aeroportos para o Estado de Minas Gerais ?
+52-Deleta o país com código do país = 'JA'.
+
+----------------
+
+--- Guilherme
+
+98-Listar os países cadastrados classificados por nome.
+110-Quais os clientes brasileiros e solteiros ou que não tiveram desconto na reserva?
+69-Listar os aeroportos que não estão no Piauí.
+83-Listar o código do cliente, o número do vôo e a data de saída (atrasada em 30 dias), para os clientes que tiverem desconto.
+54-Qual a média dos valores dos bilhetes, o maior valor e o menor , das rotas que seguem para o 'BR'
+32-Quais os clientes que nasceram nos países das companhias cujo país tem mais de 150 milhões de habitantes?
+94-Listar a capacidade de transporte de passageiros por tipo de equipamento e por quantidade de motores.
+44-Liste todas as aeronaves pertencentes a companhias do 'BR'.
+4-Listar sem repetição os valores dos bilhetes das rotas cadastradas.
+107-Quais os países  que possuem companhias aéreas ou clientes cadastrados no banco?
+29-Listar nome do equipamento e código da companhia.
+23-Listar a quantidade de aeronaves por código de equipamento, classificado por ordem descendente por quantidade.
+45-Selecione, sem repetir, os números dos vôos que possuem clientes brasileiros.
+106-Listar os nomes dos clientes e os de seus responsáveis.
+34-Listar o código do cliente, o número do vôo, a data/hora de saída das reservas registradas para os últimos 30 dias. Antecipar em 2 horas e 15 minutos os horários de saída. 
+
+----------------
+
+--- Lucas
+
+109-Listar o nome dos clientes e o de seus respectivos responsáveis (se houver).
+78-Listar o nome dos clientes nascidos no ano de l976 que sejam do sexo feminino.
+74-Listar os números dos vôos com suas respectivas datas/horas de partida, para aqueles que sairão entre os dias 1 e 2 de janeiro de 93.
+95-Selecionar os aeroportos e o preço do bilhete mais barato de cada um deles.
+21-Listar os vôos disponíveis cuja data de saída estejam programados para os dias de 01 e 10 de janeiro de 1993 e que não atendam a rota 001. Na listagem, atrasá
+18-Listar os nomes dos equipamentos que tem propulsão com 2 motores.
+24-Listar o número do vôo que saiu mais tarde no dia 01/01/1993 e não era da rota 001.
+13-Listar os números das rotas que partem dos aeroportos GALEÃO (GIG), SANTOS DUMONT (SDU), BRASÍLIA (BSB), CONGONHAS (CGH) ou GUARULHOS (GRU) .
+35-Quais são os países que tem os clientes com a idade maior que a média?
+38-Qual é a última reserva do Cliente?
+73-Relacionar os nomes e sexos dos clientes que nasceram antes do dia 08 de outubro de l974.
+115-Qual o nome dos clientes que  não fizeram reserva para o dia 01 de janeiro de 93 ?
+27-Listar sem repetição os nomes dos países dos clientes, considerando somente clientes homens de idade superior a 20 anos. Classificar de forma descendente por código do país.
+40-Liste todas as rotas relacionadas com o aeroporto 'AAX'
+75-Listar os aeroportos  cuja UF seja desconhecida.
+
+----------------
+
+--- Gabriel
+
+61-Delete todas as reservas para  o cliente com o código = 1
+47-Selecione o nome do cliente e a somatória de descontos (se possuir
+111-Quais são os vôos que atenderam à rota 101 ou foram reservados com desconto de  10% ?
+46-Selecione, sem repetir, os números dos vôos que possuem clientes com responsáveis brasileiros.
+9-Listar os nomes dos clientes nascidos no ano de 1992.
+63-Selecione a média da população, a maior população , a menor população  e quantos países existem .
+39-Liste todas as aeronaves e equipamentos da companhia 'AA' 
+93-Selecionar a quantidade de reservas de cada cliente.
+2-Listar os códigos e os nomes das companhias.
+77-Listar os códigos dos aeroportos e o nome de suas cidades, para aqueles localizados nos estados do Rio  de Janeiro, São Paulo ou Minas Gerais.
+80-Listar as rotas que saíram do Galeão com destino ao aeroporto de New York  ou saíram do Galeão com o bilhete custando ate US$ 300,00, ou ainda as rotas cujo preço do bilhete não e determinado não importando a origem  e  o destino.
+7-Listar os códigos e nomes dos equipamentos que tiveram mais de 1 motor.
+79-Relacionar as rotas que partiram ou chegaram ao aeroporto do Galeão no Rio de Janeiro.
+56-Selecione o nome do país e o maior valor do bilhete da rota que parte deste país.
+20-Listar os nomes das companhias cujo código do país ou da companhia contenham as letras "B" ou "R".
+
+----------------
+
+--- Rafael
+
+55-Selecione todas os países que possuem companhias ou que possuam aeronaves, sem repetir.
+57-verifique qual é o último código do cliente (Maior código
+113-Quais são os vôos das reservas dos clientes que nasceram em países que tenham mais de 200 milhões de habitantes.
+43-Listem todos os equipamentos que possuem a palavra 'Turbo' no tipo de equipamento, ordenando pelo nome do equipamento.
+53-Qual é o número de vôos que possui como estado de origem 'MG'
+81-Selecionar os números das rotas que partem do aeroporto de MIAMI e o seu preço, considerar no preço do bilhete uma majoração de 20%.
+59-Faça uma reserva para o vôo número 4 com data de saída = 06/01/1993e hora de saída = 18:16:00
+87-Selecionar o número do vôo, a data/hora de saída e uma nova hora com atraso de 12 horas e 15 minutos para os vôos que atenderem a rota 103.
+101-Listar o nome dos clientes e os descontos que eles tiveram nas suas reservas.
+33-Listar os números dos vôos e das aeronaves que não atenderão as rotas 159 e 399 e cujo ano de partida seja igual ao ano da data corrente. As demais rotas, só mostrar o número dos vôos.
+97-Listar o total de passageiros que podem ser transportados por cada tipo de equipamento, mas só interessam aqueles tipos que transportem mais de 100 passageiros.
+114-Relacionar os nomes dos clientes que estão com reservas para o vôo 145, mas somente se neste vôo ninguém teve desconto.
+70-Listar os países cujo nome seja menor que "MM".
+25-Listar a quantidade de países que tem mais de 10 milhões de habitantes.
+
+----------------
+
+--- Maria Cecilia
+
+64-Selecione os clientes que possuem reserva e o número de reservas de cada cliente
+6-Listar os nomes dos clientes brasileiros
+51-Altere todos os registros que possuam Data de saída  = 06/01/1993, para  Data de Saída = 06/01/1993
+117-Quais são os clientes que nunca fizeram reserva?
+15-Listar os números, a data/hora de saída dos vôos que partam antes das 6 da manhã e não atendem as rotas 001, 002, 003.
+105-Para as aeronaves do tipo jato e que são de companhias de países com mais de 1 milhão de habitantes, listar o nome do equipamento e o nome de sua companhia.
+90-Calcular o valor médio do preço dos bilhetes das rotas que partem do aeroporto JFK em New York.
+116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde ninguém teve desconto.
+11-Listar os códigos dos equipamentos com a quantidade de motores desconhecida.
+26-Listar o valor do bilhete mais barato do vôo que sai do GALEÃO (“GIG”).
+22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros (BR), japoneses (JA) ou franceses (FR).
+91-Calcular a data média dos vôos programados para a rota 101.
+82-Listar o nome dos equipamentos não "jato" com sua capacidade de transporte de passageiros acrescida de 10 passageiros.
+17-Listar o nome do cliente e o código do respectivo responsável para os que nasceram em data desconhecida.
+
+----------------
+
+--- Patrick
+
+50-Adicione um registro a tabela de país com os seguintes dados: • qtpopul = 1903  • cdpais = 'JA'  • Nome do País = 'Jamaica'
+14-Listar os números das rotas que não chegam aos aeroportos SANTOS DUMONT (SDU), GALEÃO (GIG), BRASÍLIA (BSB), CONGONHAS (CGH) ou GUARULHOS (GRU).
+88-Selecionar o nome e o sexo  (por extenso) dos clientes com códigos na faixa de 404
+68-Listar os aeroportos do estado do Piauí.
+67-Listar o nome e a população dos países cadastrados.3 
+76-Relacionar os nomes e os códigos dos países onde nasceram os clientes cujo nome comece com "JO".
+86-Listar a data de nascimento do cliente 12, a diferença entre a data de hoje e a do nascimento e a quantidade de dias decorridos desde a data do nascimento e a data de hoje.
+16-Listar os códigos e nomes dos equipamentos cujo tipo de propulsão seja motor (“M”) e não sejam "JATO".
+49-Selecione o nome da companhia que possui a rota com o maior valor do bilhete.
+99-Relacionar a data de saída, o código do cliente e o percentual de desconto das reservas, classificando em ordem de data ascendente e cliente descendente 
+12-Listar o código dos clientes de sexo conhecido.
+108-Listar o nome e o sexo (por extenso) dos clientes cadastrados no banco de código entre 404 e 410.
+89-Listar  a quantidade total de passageiros possíveis de se transportar nos equipamentos de 3 motores.
+85-Listar o dia, o mês e o ano da data atual, a data  de nascimento do cliente 012, e o número de dias decorridos desde sua data de nascimento até o dia de hoje.
+
+----------------
+
+--- Victoria
+
+66-Selecionar o código, o nome e a população de todos os países
+112-Quais foram os clientes que tiveram desconto maior do que a média dos descontos de todos os clientes?
+48-Selecione o nome do cliente, o nome do país do cliente, o somatório dos descontos obtidos pelos clientes nas reservas que ocorreram no ano 1992, ordenando tudo pelo nome do cliente.
+71-Listar os aeroportos cuja UF seja desconhecida.
+84-Listar sem repetição o código dos clientes que viajaram há mais de 20 dias.
+72-Listar os vôos programados para saírem antes do dia 4 de janeiro de 93.
+5-Listar os números, a data/hora de saída dos vôos que partam a meia
+96-Determinar o total de passageiros que podem ser transportados por cada tipo de equipamento.
+28-Listar os nomes dos equipamentos, onde sua descrição tenha a palavra ' JATO ' . Classificar de forma ascendente por nome do equipamento.
+58-Verifique se os registros que você inseriu estão na tabela.
+37-Mostre o nome do cliente, código do Cliente, Data de Nascimento e número de reservas?
+60-Aumente todos os 
