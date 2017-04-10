@@ -22,16 +22,6 @@ namespace ORM
                 Console.WriteLine("Cliente: " + item.nome);
             }
         }
-        public static void exe105(ISession session)
-        {
-            //105-Para as aeronaves do tipo jato e que são de companhias de países com mais 
-            //de 1 milhão de habitantes, listar o nome do equipamento e o nome de sua companhia.
-            var cli = session.Query<T_Cliente>().Where(x => x.pais.codigo == "BR");
-            foreach (var item in cli)
-            {
-                Console.WriteLine("Cliente: " + item.nome);
-            }
-        }
         public static void exe116(ISession session)
         {
             //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde
@@ -141,6 +131,34 @@ namespace ORM
             }
 
         }
+        public static void exe82(ISession session)
+        {
+            //82-Listar o nome dos equipamentos não "jato" com sua capacidade de 
+            //transporte de passageiros acrescida de 10 passageiros.
+            var qeqp = session.Query<T_Equipamento>()
+                .Where(e => !e.tipo.Like("%jato%"))
+                .Select(e => new { e.nome, e.qtdpassag });
+            var eqp = qeqp.ToList();
+            foreach (var item in eqp)
+            {
+                Console.WriteLine("Equipamento:{0} Qtd Passageiro+10: {1},  {2}", item.nome, item.qtdpassag + 10);
+            }
+        }
+
+        public static void exe105(ISession session)
+        {
+            //105-Para as aeronaves do tipo jato e que são de companhias de países com mais 
+            //de 1 milhão de habitantes, listar o nome do equipamento e o nome de sua companhia.
+            var qaeron = session.Query<T_Aeronave>()
+                .Where(x => x.ciaarea.pais.populacao > 1000000
+                && x.equipamento.tipo.Like("%jato%"))
+                .Select(a => new { eqp = a.equipamento.nome, cia = a.ciaarea.nome  });
+           // var aeron = qaeron.ToList();
+            foreach (var item in qaeron)
+            {
+                Console.WriteLine("Aeronave\nEquipamento:{0}, Cia Aerea: {1} ", item.eqp, item.cia);
+            }
+        }
 
         /****/
         public static void exe22(ISession session)
@@ -164,19 +182,6 @@ namespace ORM
 
         //91-Calcular a data média dos vôos programados para a rota 101.
         public static void exe91(ISession session) { }  
-        public static void exe82(ISession session)
-        {
-            //82-Listar o nome dos equipamentos não "jato" com sua capacidade de 
-            //transporte de passageiros acrescida de 10 passageiros.
-            var qeqp = session.Query<T_Equipamento>()
-                .Where(e => !e.nome.Like("%jato%"))
-                .Select(e => new { e.nome, e.qtdpassag});
-            var eqp = qeqp.ToList();
-            foreach (var item in eqp)
-            {
-                Console.WriteLine("Equipamento:{0} Qtd Passageiro+10: {1}", item.nome, item.qtdpassag);
-            }
-        }
         
     
     }

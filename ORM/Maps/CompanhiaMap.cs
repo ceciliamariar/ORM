@@ -12,7 +12,7 @@ namespace ORM.Maps
     {
         public CompanhiaMap()
         {
-            Id(x => x.codigo, "CDAERON");
+            Id(x => x.codigo, "CDCIA");
             Map(x => x.nome, "NMCIA");
             References<T_Pais>(x => x.pais, "CDPAIS_CIA");
 

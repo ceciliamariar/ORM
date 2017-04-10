@@ -13,5 +13,6 @@ namespace ORM
         public virtual T_Companhia ciaarea { get; set; }
 
         public virtual IList<T_Voo> Voos { get; set; }
+
     }
 }

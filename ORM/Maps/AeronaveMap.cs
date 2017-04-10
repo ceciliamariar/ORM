@@ -15,6 +15,9 @@ namespace ORM.Maps
             Id(x => x.codigo, "CDAERON");
             References<T_Companhia>(x => x.ciaarea, "CDCIA");
             References<T_Equipamento>(x => x.equipamento, "CDEQP");
+
+            HasMany(x => x.Voos).KeyColumn("CDAERON_VOO");
+
             Table("T_AERONAVE");
         }
     }
