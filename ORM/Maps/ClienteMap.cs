@@ -20,7 +20,7 @@ namespace ORM.Maps
             References<T_Cliente>(x => x.responsavel, "CDCLI_RSP");
             References<T_Pais>(x => x.pais, "CDPAIS_CLI");
 
-            HasMany(x => x.reservas).KeyColumn("CDCLI_RSV");
+            HasMany(x => x.reservas).KeyColumn("CDCLI_RSV").Inverse();
             HasMany(x => x.dependente).KeyColumn("CDCLI_RSP");
             Table("T_CLIENTE");
         }

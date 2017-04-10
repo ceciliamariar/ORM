@@ -12,7 +12,7 @@ namespace ORM
 {
     public class Exercicios
     {
-        //imcompleto
+        //incompleto
         public static void exe51(ISession session)
         {
             //51-Altere todos os registros que possuam Data de saída  = 06/01/1993, 
@@ -22,48 +22,31 @@ namespace ORM
             var t = voo.ToList();
             foreach (var item in t)
             {
-                item.dataSaida = item.dataSaida.AddDays(1);//new DateTime(1993, 01, 07);
-                session.Update(item);
+               // item.dataSaida = item.dataSaida.AddDays(1);//new DateTime(1993, 01, 07);
+
+                session.Flush();
+                var vo = item;
+                vo.dataSaida = new DateTime(1993, 01, 07);
+                session.SaveOrUpdate("T_Voo",vo, item);
                 Console.WriteLine("Ok " + item.numero);
+                session.Flush();
             }
             session.Transaction.Commit();
-            session.Flush();
+
         }
-
-
         public static void exe116(ISession session)
         {
             //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde
             // ninguém teve desconto.
             var semdesconto = session.Query<T_Voo>()
-                .Where(x => x.reservas.Where(c => c.desconto > 0) != null)
-                .Select(a => a.reservas.Select(q => q.cliente.nome));
-
+                .Where(x => x.reservas.Where(r => r.desconto > 0).Count() == 0)
+                ;//.Select(s=> new { s.numero,s.dataSaida,s.hrSaida,s.reservas}).ToList();
+            var cli = session.Query<T_Cliente>()
+                .Where(x => x.reservas.Where(r => r.desconto > 0).ToList() != null);
+                
         }
-
-        /****/
-        public static void exe22(ISession session)
-        {
-            //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), 
-            //japoneses(JA) ou franceses(FR).
-            var qcli = session.Query<T_Cliente>()
-                .Where(x => x.pais.codigo == "BR"
-                        || x.pais.codigo == "JA"
-                        || x.pais.codigo == "FR");
-            //.Select(c => new { c.nome, c.dtnascimento, c.pais });
-            var cli = qcli.ToList();
-            Console.WriteLine("Clientes:");
-            foreach (var item in cli)
-            {
-                Console.WriteLine("Cliente: {0}, \nNascimento:{1} \nIdade: {2}\nNatural de {3}\n\n", item.nome, item.dtnascimento.ToShortDateString(), Convert.ToUInt16(DateTime.Now.Subtract(item.dtnascimento).TotalDays / 365), item.pais.nome);
-            }
-        }
-        /******/
-
-
         //91-Calcular a data média dos vôos programados para a rota 101.
         public static void exe91(ISession session) { }
-
 
 
         //concluido, talvez com sucesso
@@ -97,14 +80,17 @@ namespace ORM
         {
             //117-Quais são os clientes que nunca fizeram reserva?
             var qcli = session.Query<T_Cliente>()
-                .Where(x => x.reservas == null)
+                .Where(x => x.reservas.Count() == 0)
                 .Select(c => new { c.nome });
             var cli = qcli.ToList();
             Console.WriteLine("Clientes que nunca fizeram reserva:");
+            int cont = cli.Count;
             foreach (var item in cli)
             {
                 Console.WriteLine("Cliente: " + item.nome);
             }
+            Console.WriteLine(cont);
+
         }
         public static void exe15(ISession session)
         {
@@ -154,6 +140,23 @@ namespace ORM
             Console.WriteLine("Bilhete mais barato para Galeão custa: R$ " + qrota.ToString());
 
         }
+        public static void exe22(ISession session)
+        {
+            //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), 
+            //japoneses(JA) ou franceses(FR).
+            var qcli = session.Query<T_Cliente>()
+                .Where(x => x.pais.codigo == "BR"
+                        || x.pais.codigo == "JA"
+                        || x.pais.codigo == "FR")
+            .Select(c => new { c.nome, c.dtnascimento, c.pais });
+            var cli = qcli.ToList();
+            Console.WriteLine("Clientes:");
+            foreach (var item in cli)
+            {
+                Console.WriteLine("Cliente: {0}, \nNascimento:{1} \nIdade: {2}\nNatural de {3}\n\n", item.nome, item.dtnascimento.GetValueOrDefault().ToShortDateString(), Convert.ToUInt16(DateTime.Now.Subtract(item.dtnascimento.GetValueOrDefault()).TotalDays / 365), item.pais.nome);
+            }
+        }
+
         public static void exe17(ISession session)
         {
 
@@ -196,6 +199,6 @@ namespace ORM
                 Console.WriteLine("Aeronave\nEquipamento:{0}, Cia Aerea: {1} ", item.eqp, item.cia);
             }
         }
-
+       
     }
 }

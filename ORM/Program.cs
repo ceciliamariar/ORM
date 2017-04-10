@@ -111,7 +111,8 @@ namespace ORM
         {
             using (ISession session = FluentNHibernateHelper.OpenSession())
             {
-                Exercicios.exe51(session);
+
+                Exercicios.exe117(session);
 
                 //var p = new T_Pais();
                 //p.nome = "pais testando";
