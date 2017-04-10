@@ -112,8 +112,21 @@ namespace ORM
             using (ISession session = FluentNHibernateHelper.OpenSession())
             {
                 Exercicios.exe51(session);
+
+                //var p = new T_Pais();
+                //p.nome = "pais testando";
+                //p.codigo = "PT";
+                //p.populacao = 2;
+                //Console.WriteLine("Atulizando...");
+                //using (var transaction = session.BeginTransaction())
+                //{
+                //    session.SaveOrUpdate(p);
+                //    Console.WriteLine("ok");
+                //    transaction.Commit();
+                //}
+
             }
-            Console.ReadLine();
+                Console.ReadLine();
         }
     }
 

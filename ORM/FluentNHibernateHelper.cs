@@ -18,7 +18,7 @@ namespace ORM
             string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=SQLFINAL;Integrated Security=True;MultipleActiveResultSets=True";
             ISessionFactory sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
-                  .ConnectionString(connectionString)
+                  .ConnectionString(connectionString).ShowSql()
                 )
                 .Mappings(m =>
                           m.FluentMappings

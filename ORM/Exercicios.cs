@@ -15,24 +15,22 @@ namespace ORM
         //imcompleto
         public static void exe51(ISession session)
         {
-            //51-Altere todos os registros que possuam Data de saída  = 06/01/1993, para Data de Saída = 06 / 01 / 1993
-
-            using (var transaction = session.BeginTransaction())
+            //51-Altere todos os registros que possuam Data de saída  = 06/01/1993, 
+            // para Data de Saída = 06 / 01 / 1993
+            session.Transaction.Begin();
+            var voo = session.Query<T_Voo>().Where(v => v.dataSaida == new DateTime(1993, 01, 06));
+            var t = voo.ToList();
+            foreach (var item in t)
             {
-                T_Cliente c = new T_Cliente();
-                c.nome = "C";
-                c.pais = new T_Pais();
-                c.pais.codigo = "BR";
-
-                session.Update()
+                item.dataSaida = item.dataSaida.AddDays(1);//new DateTime(1993, 01, 07);
+                session.Update(item);
+                Console.WriteLine("Ok " + item.numero);
             }
-
-            //var cli = session.Query<T_Cliente>().Where(x => x.pais.codigo == "BR");
-            //foreach (var item in cli)
-            //{
-            //    Console.WriteLine("Cliente: " + item.nome);
-            //}
+            session.Transaction.Commit();
+            session.Flush();
         }
+
+
         public static void exe116(ISession session)
         {
             //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde
@@ -75,7 +73,7 @@ namespace ORM
             //64-Selecione os clientes que possuem reserva e o número de reservas de cada cliente
             var qcli = session.Query<T_Cliente>()
                 .Where(x => x.reservas.Count() > 0)
-                .Select(c => new { c.nome, c.reservas.Count } );
+                .Select(c => new { c.nome, c.reservas.Count });
             var cli = qcli.ToList();
             foreach (var item in cli)
             {
@@ -86,7 +84,7 @@ namespace ORM
         {
             //6-Listar os nomes dos clientes brasileiros
             var qcli = session.Query<T_Cliente>()
-                .Where(x => x.pais.codigo=="BR")
+                .Where(x => x.pais.codigo == "BR")
                 .Select(c => new { c.nome });
             var cli = qcli.ToList();
             Console.WriteLine("Clientes Brasileiros:");
@@ -113,15 +111,15 @@ namespace ORM
             //15-Listar os números, a data/hora de saída dos vôos que partam 
             //antes das 6 da manhã e não atendem as rotas 001, 002, 003.
             var qvoo = session.Query<T_Voo>()
-                .Where(x => x.hrSaida.Hour < 06 
-                        && x.rota.numero != 001 
-                        && x.rota.numero != 002 
+                .Where(x => x.hrSaida.Hour < 06
+                        && x.rota.numero != 001
+                        && x.rota.numero != 002
                         && x.rota.numero != 003)
                 .Select(v => new { v.numero, v.dataSaida, v.hrSaida });
             var voos = qvoo.ToList();
             foreach (var item in voos)
             {
-                Console.WriteLine("Voo:{0}, Data saida:{1} {2}", item.numero, item.dataSaida.ToShortDateString(), item.hrSaida.ToShortTimeString() );
+                Console.WriteLine("Voo:{0}, Data saida:{1} {2}", item.numero, item.dataSaida.ToShortDateString(), item.hrSaida.ToShortTimeString());
             }
         }
         public static void exe90(ISession session)
@@ -129,10 +127,10 @@ namespace ORM
             //90-Calcular o valor médio do preço dos bilhetes das rotas que partem do 
             //aeroporto JFK em New York.
             var qrota = session.Query<T_Rota>()
-                .Where(x => x.origem.codigo=="JFK")
-                .Select(r => new {r.valorbilhete}).Average(a => a.valorbilhete);
+                .Where(x => x.origem.codigo == "JFK")
+                .Select(r => new { r.valorbilhete }).Average(a => a.valorbilhete);
             Console.WriteLine("Média do preço do bilhete para JFK: R$ " + qrota.ToString());
-            
+
         }
         public static void exe11(ISession session)
         {
@@ -191,13 +189,13 @@ namespace ORM
             var qaeron = session.Query<T_Aeronave>()
                 .Where(x => x.ciaarea.pais.populacao > 1000000
                 && x.equipamento.tipo.Like("%jato%"))
-                .Select(a => new { eqp = a.equipamento.nome, cia = a.ciaarea.nome  });
+                .Select(a => new { eqp = a.equipamento.nome, cia = a.ciaarea.nome });
             var aeron = qaeron.ToList();
             foreach (var item in aeron)
             {
                 Console.WriteLine("Aeronave\nEquipamento:{0}, Cia Aerea: {1} ", item.eqp, item.cia);
             }
         }
-    
+
     }
 }
