@@ -18,6 +18,7 @@ namespace ORM.Maps
                 .KeyProperty(x => x.hrSaida, "HRSAIDA");
             References<T_Aeronave>(x => x.areronave, "CDAERON_VOO");
             References<T_Rota>(x => x.rota, "NRROTA_VOO");
+
             HasMany(x => x.reservas).KeyColumns.Add("NRVOO_RSV", "DTSAIDA_RSV", "HRSAIDA_RSV");
             Table("T_VOO");
         }

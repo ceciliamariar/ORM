@@ -16,17 +16,57 @@ namespace ORM
         public static void exe51(ISession session)
         {
             //51-Altere todos os registros que possuam Data de saída  = 06/01/1993, para Data de Saída = 06 / 01 / 1993
-            var cli = session.Query<T_Cliente>().Where(x => x.pais.codigo == "BR");
-            foreach (var item in cli)
+
+            using (var transaction = session.BeginTransaction())
             {
-                Console.WriteLine("Cliente: " + item.nome);
+                T_Cliente c = new T_Cliente();
+                c.nome = "C";
+                c.pais = new T_Pais();
+                c.pais.codigo = "BR";
+
+                session.Update()
             }
+
+            //var cli = session.Query<T_Cliente>().Where(x => x.pais.codigo == "BR");
+            //foreach (var item in cli)
+            //{
+            //    Console.WriteLine("Cliente: " + item.nome);
+            //}
         }
         public static void exe116(ISession session)
         {
             //116-Relacionar os nomes dos clientes que estão com reservas para os vôos onde
             // ninguém teve desconto.
+            var semdesconto = session.Query<T_Voo>()
+                .Where(x => x.reservas.Where(c => c.desconto > 0) != null)
+                .Select(a => a.reservas.Select(q => q.cliente.nome));
+
         }
+
+        /****/
+        public static void exe22(ISession session)
+        {
+            //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), 
+            //japoneses(JA) ou franceses(FR).
+            var qcli = session.Query<T_Cliente>()
+                .Where(x => x.pais.codigo == "BR"
+                        || x.pais.codigo == "JA"
+                        || x.pais.codigo == "FR");
+            //.Select(c => new { c.nome, c.dtnascimento, c.pais });
+            var cli = qcli.ToList();
+            Console.WriteLine("Clientes:");
+            foreach (var item in cli)
+            {
+                Console.WriteLine("Cliente: {0}, \nNascimento:{1} \nIdade: {2}\nNatural de {3}\n\n", item.nome, item.dtnascimento.ToShortDateString(), Convert.ToUInt16(DateTime.Now.Subtract(item.dtnascimento).TotalDays / 365), item.pais.nome);
+            }
+        }
+        /******/
+
+
+        //91-Calcular a data média dos vôos programados para a rota 101.
+        public static void exe91(ISession session) { }
+
+
 
         //concluido, talvez com sucesso
 
@@ -144,7 +184,6 @@ namespace ORM
                 Console.WriteLine("Equipamento:{0} Qtd Passageiro+10: {1},  {2}", item.nome, item.qtdpassag + 10);
             }
         }
-
         public static void exe105(ISession session)
         {
             //105-Para as aeronaves do tipo jato e que são de companhias de países com mais 
@@ -153,36 +192,12 @@ namespace ORM
                 .Where(x => x.ciaarea.pais.populacao > 1000000
                 && x.equipamento.tipo.Like("%jato%"))
                 .Select(a => new { eqp = a.equipamento.nome, cia = a.ciaarea.nome  });
-           // var aeron = qaeron.ToList();
-            foreach (var item in qaeron)
+            var aeron = qaeron.ToList();
+            foreach (var item in aeron)
             {
                 Console.WriteLine("Aeronave\nEquipamento:{0}, Cia Aerea: {1} ", item.eqp, item.cia);
             }
         }
-
-        /****/
-        public static void exe22(ISession session)
-        {
-            //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), 
-            //japoneses(JA) ou franceses(FR).
-            var qcli = session.Query<T_Cliente>()
-                .Where(x => x.pais.codigo == "BR"
-                        || x.pais.codigo == "JA"
-                        || x.pais.codigo == "FR");
-            //.Select(c => new { c.nome, c.dtnascimento, c.pais });
-            var cli = qcli.ToList();
-            Console.WriteLine("Clientes:");
-            foreach (var item in cli)
-            {
-                Console.WriteLine("Cliente: {0}, \nNascimento:{1} \nIdade: {2}\nNatural de {3}\n\n", item.nome, item.dtnascimento.ToShortDateString(), Convert.ToUInt16(DateTime.Now.Subtract(item.dtnascimento).TotalDays / 365), item.pais.nome);
-            }
-        }
-        /******/
-
-
-        //91-Calcular a data média dos vôos programados para a rota 101.
-        public static void exe91(ISession session) { }  
-        
     
     }
 }
