@@ -38,7 +38,6 @@ namespace ORM
             // ninguém teve desconto.
         }
 
-
         //concluido, talvez com sucesso
 
         public static void exe64(ISession session)
@@ -105,7 +104,6 @@ namespace ORM
             Console.WriteLine("Média do preço do bilhete para JFK: R$ " + qrota.ToString());
             
         }
-
         public static void exe11(ISession session)
         {
             //11-Listar os códigos dos equipamentos com a quantidade de motores desconhecida.
@@ -118,14 +116,68 @@ namespace ORM
 
             }
         }
+        public static void exe26(ISession session)
+        {
+
+            //26-Listar o valor do bilhete mais barato do vôo que sai do GALEÃO (“GIG”).
+            var qrota = session.Query<T_Rota>()
+                .Where(x => x.origem.codigo == "GIG")
+                .Select(r => new { r.valorbilhete }).Min(a => a.valorbilhete);
+            Console.WriteLine("Bilhete mais barato para Galeão custa: R$ " + qrota.ToString());
+
+        }
+        public static void exe17(ISession session)
+        {
+
+            //17-Listar o nome do cliente e o código do respectivo responsável 
+            //para os que nasceram em data desconhecida.
+            var qcli = session.Query<T_Cliente>()
+                .Where(x => x.dtnascimento == null)
+                .Select(r => new { r.nome, r.responsavel.codigo });
+            var cli = qcli.ToList();
+            foreach (var item in cli)
+            {
+                Console.WriteLine("Cliente {0}, Cod. Responsavel {1}", item.nome, item.codigo == null ? "Não existe responsavel" : item.codigo);
+            }
+
+        }
+
+        /****/
+        public static void exe22(ISession session)
+        {
+            //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), 
+            //japoneses(JA) ou franceses(FR).
+            var qcli = session.Query<T_Cliente>()
+                .Where(x => x.pais.codigo == "BR"
+                        || x.pais.codigo == "JA"
+                        || x.pais.codigo == "FR");
+            //.Select(c => new { c.nome, c.dtnascimento, c.pais });
+            var cli = qcli.ToList();
+            Console.WriteLine("Clientes:");
+            foreach (var item in cli)
+            {
+                Console.WriteLine("Cliente: {0}, \nNascimento:{1} \nIdade: {2}\nNatural de {3}\n\n", item.nome, item.dtnascimento.ToShortDateString(), Convert.ToUInt16(DateTime.Now.Subtract(item.dtnascimento).TotalDays / 365), item.pais.nome);
+            }
+        }
+        /******/
 
 
-
-        //26-Listar o valor do bilhete mais barato do vôo que sai do GALEÃO (“GIG”).
-        //22-Listar o nome, a data de nascimento e a idade de todos os clientes brasileiros(BR), japoneses(JA) ou franceses(FR).
         //91-Calcular a data média dos vôos programados para a rota 101.
-        //82-Listar o nome dos equipamentos não "jato" com sua capacidade de transporte de passageiros acrescida de 10 passageiros.
-        //17-Listar o nome do cliente e o código do respectivo responsável para os que nasceram em data desconhecida.
-
+        public static void exe91(ISession session) { }  
+        public static void exe82(ISession session)
+        {
+            //82-Listar o nome dos equipamentos não "jato" com sua capacidade de 
+            //transporte de passageiros acrescida de 10 passageiros.
+            var qeqp = session.Query<T_Equipamento>()
+                .Where(e => !e.nome.Like("%jato%"))
+                .Select(e => new { e.nome, e.qtdpassag});
+            var eqp = qeqp.ToList();
+            foreach (var item in eqp)
+            {
+                Console.WriteLine("Equipamento:{0} Qtd Passageiro+10: {1}", item.nome, item.qtdpassag);
+            }
+        }
+        
+    
     }
 }

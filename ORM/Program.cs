@@ -111,7 +111,7 @@ namespace ORM
         {
             using (ISession session = FluentNHibernateHelper.OpenSession())
             {
-                Exercicios.exe90(session);
+                Exercicios.exe82(session);
             }
             Console.ReadLine();
         }

@@ -14,9 +14,9 @@ namespace ORM.Maps
             Id(x => x.codigo,"CDEQU");
             Map(x => x.nome,"NMEQP");
             Map(x => x.tipo,"DCTIP_EQP");
-            Map(x => x.qtdmotor,"QTDMOTOR");
+            Map(x => x.qtdmotor,"QTMOTOR");
             Map(x => x.tipoprop,"IDTIP_PROP");
-            Map(x => x.qtdpassag,"QTDPASSAG");
+            Map(x => x.qtdpassag,"QTPASSAG");
             Table("T_EQUIPAMENTO");
         }
 

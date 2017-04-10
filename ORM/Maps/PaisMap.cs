@@ -14,7 +14,7 @@ namespace ORM.Maps
         {
             Id(x => x.codigo, "CDPAIS");
             Map(x => x.nome, "NMPAIS");
-            Map(x => x.populacao, "QTDPOPUL");
+            Map(x => x.populacao, "QTPOPUL");
 
             HasMany(x => x.Aeroportos).KeyColumn("CDPAIS_AEROP");
             HasMany(x => x.companhias).KeyColumn("CDPAIS_CIA");
