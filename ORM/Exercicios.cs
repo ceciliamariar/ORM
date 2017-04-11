@@ -46,7 +46,10 @@ namespace ORM
                 
         }
         //91-Calcular a data média dos vôos programados para a rota 101.
-        public static void exe91(ISession session) { }
+        public static void exe91(ISession session)
+        {
+            
+        }
 
 
         //concluido, talvez com sucesso
